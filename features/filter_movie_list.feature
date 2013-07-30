@@ -28,6 +28,12 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
 
+  When I check the following ratings: PG, R
+  And I uncheck the following ratings: G, PG-13
+  And I press "Refresh" button
+  Then I should see ratings: PG, R
+  And I should not see ratings: G, PG-13
+
 Scenario: no ratings selected
   # see assignment
 
