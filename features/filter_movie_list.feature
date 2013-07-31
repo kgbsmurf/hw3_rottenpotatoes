@@ -36,6 +36,12 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
 
 Scenario: no ratings selected
   # see assignment
+  When I uncheck all ratings
+  And I press "Refresh" button
+  Then I should see all of the movies
 
 Scenario: all ratings selected
+	Given that all checkboxes are checked
+	When I press "Refresh" button
+	Then I should see all of the movies
   # see assignment

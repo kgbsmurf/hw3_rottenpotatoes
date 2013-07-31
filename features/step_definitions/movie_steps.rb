@@ -56,4 +56,25 @@ Then /^I should (not )?see ratings: (.*)/ do |not_see, rating|
 	end
 end
 
+When /^I uncheck all ratings$/ do
+	%w[R G PG-13 PG].each do |rating|
+		value = 'ratings_' + rating
+		page.uncheck(value)
+	end
+end
+
+Then /^I should see all of the movies$/ do
+	all('#table_id tr > td:nth-child(2)').each do |td|
+		%w[R G PG-13 PG].should include td.text
+	end
+end
+
+Given /^that all checkboxes are checked$/ do
+        %w[R G PG-13 PG].each do |rating|
+		value = 'ratings_' + rating
+        	page.check(value)
+	end
+end
+
+
 
